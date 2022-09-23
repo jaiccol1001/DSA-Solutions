@@ -1,0 +1,40 @@
+// Ques. Leetcode   Power of two
+
+
+// ********Solution 1 : using bit manipulation ---> time-O(1) space-O(1).***********
+
+ bool isPowerOfTwo(int n) {
+        if(n<=0) return false;
+        return ((n&(n-1))==0);
+    }
+    
+// Solution 2: *******using ceil floor method********
+
+ bool isPowerOfTwo(int n) {
+        if(n <= 0) return false;
+        return ceil(log2(n)) == floor(log2(n));    //this method can also be used to check if the answer that was returned is integer or not since for int ceil== floor.
+    }
+    
+// Solution 3 : ********Using Reminder-divident method:-**********
+
+    bool isPowerOfTwo(int n) {
+        if(n==0) return false; // since no power of 2 gives 0.
+        while(n%2==0) n/=2; // check if number is divisible by 2 and then divide it by 2 to get smaller number to check again.
+        return n==1;  // the number is power of 2 if final remainder is 1 else its not.
+    }
+Time Complexity: O(logn)
+Space Complexity: O(1)
+
+// Solution 4: **********using the constraints that 2^-31<=n<=2^31 this will only work for this specific constraint.***********
+
+ bool isPowerOfTwo(int n) {
+      if(n<=0) return false; // since no power of 2 is negative or 0.
+      long  int ans=1;
+        for(int i=0;i<=30;i++){
+               if(ans==n){
+                   return true;
+               }
+            ans*=2;
+        }
+        return false;
+    }
