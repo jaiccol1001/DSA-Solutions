@@ -1,0 +1,31 @@
+// Ques.  Leetcode  Complement of Base 10 Integer
+ 
+// Solution 1: bit shift based solution ---> time-O(log n) space - O(1)
+
+// We construct a XOR mask from all ones until it's larger or equal than the number. For example, for 100101, the mask will be 111111. And for 1111, the mask will be      //1111. The result is the XOR operation of the number and the mask.
+
+  int bitwiseComplement(int N) {
+    int c = 1; // c = pow(2, x) – 1; c is the smallest number >= N
+    while (c < N) 
+      c = (c << 1) | 1;
+      //c = c*2 + 1;  same as above
+    return N ^ c;  
+    //return c - N; // also ok  
+  };
+
+  
+ 
+// Solution 2 : (naive) finding each bit by %2 and then flipping it and multiplying with appropriate power of 2 to get the complement decimal number
+    time--O(log n) space--O(1)
+int bitwiseComplement(int n) {
+        if(n==0) return 1; 
+        int ans=0;
+        int fac=1;
+       while(n>0){
+         ans+=(!(n%2))*fac;
+          fac*=2;
+           n=n/2;
+       }
+         
+        return ans;
+    }
