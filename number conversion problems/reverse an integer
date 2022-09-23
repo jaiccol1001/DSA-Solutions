@@ -1,0 +1,36 @@
+ // Ques. Leetcode reverse integer  time complexity---O(log x) space--O(1)
+ 
+ 
+ /*To reverse the given number we need to do the following steps:
+
+Extract last digit from right to left from the given number using the mod operator.
+
+Put the extracted digit into its correct position in the result.
+
+Discard the currently processed digit from the original number using divide operation.
+
+Repeat steps 1 - 3 as long as the given value x is greater than 0.
+
+The above steps can be represented using the formula:
+
+
+result = result* 10 + currentDigit
+
+And,
+
+currentDigit = x%10
+*/
+
+ 
+ int reverse(int x) {
+        int ans=0; // reversed integer value
+        while(x!=0){
+            int digit=x%10;
+            if((ans>INT_MAX/10)||(ans<INT_MIN/10)){    // to check overflow and if it occurs we have to return 0
+                return 0;
+            }
+            ans=ans*10+digit;
+            x=x/10;
+        }
+        return ans;
+    }
